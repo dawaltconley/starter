@@ -5,7 +5,7 @@ description: >
   A subtitle or longer description of the site.
 keywords: # a YAML list. optional; only used by some older search engines.
 baseurl: # for hosting at a subdomain
-url: # full url of main site
+url: "https://starter-test.netlify.com" # full url of main site
 og_image: # default og image used for entire site; can be overridden if specified in page or collection frontmatter
 google_analytics: # tracking number
 permalink: /:title/ # default permalink structure for pages

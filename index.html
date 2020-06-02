@@ -1,8 +1,66 @@
 ---
 layout: default
+title: Home Page
+parallax: true
 ---
 
-<div class="margin-auto padding-m text-wrapper">
-  <h1>{{ site.title}}</h1>
-  <p>{{ site.description }}</p>
+<div class="dark parallax-group half-screen-height content-box">
+  <div class="parallax-bg-deep splash-bg"></div>
+  <div class="text-wrapper wrapper-padding margin-auto-h padding-l-v">
+    <h1 class="shadow">Starter Site</h1>
+  </div>
+</div>
+
+<div class="front theme-bg">
+
+  <div class="text-wrapper wrapper-padding margin-auto padding-l-v">
+
+    <h2>{{ page.title}}</h2>
+
+    <p>Some text about a thing:</p>
+
+    {% capture filler %}{% include lorem-ipsum.md %}{% endcapture %}
+    <blockquote>{{ filler | truncate: 400 }}</blockquote>
+
+    <p>Some <span class="text-light">light text</span> as well.</p>
+
+    <p>A <a href="https://github.com/dawaltconley">link to somewhere</a> and a <a href="{{ site.url | append: site.baseurl }}">link to here</a>.</p>
+
+    <p><span class="border-basic border-light padding-xs">Some bordered text</span></p>
+
+    <a class="button" href="https://github.com/dawaltconley">A button</a>
+
+    <p>Here is some code:</p>
+
+    <pre>
+  function(arg1, arg2) {
+      // do some things
+  }
+    </pre>
+
+    <p>Here is a list:</p>
+
+    <ul>
+      <li>One item.</li>
+      <li>Another item.
+        <ul>
+          <li>A couple of</li>
+          <li>grouped items.</li>
+        </ul>
+      </li>
+      <li>A final item.</li>
+    </ul>
+
+    <p>Some contact icons:</p>
+    <p class="media-icon-button media-icon-list fs-icon">
+    {% include all-media-icons.liquid icon_set=site.data.contact style='simple' %}
+    </p>
+
+    <p>A device-optimized image:</p>
+    {% assign img = '/assets/gulp-srcset/selfie.jpg' | prepend: site.baseurl %}
+    {% assign text_wrapper_bp = 36 | times: 1.25 | round %}
+    <img src="{{ img }}" alt="A self portrait." srcset="{% include gulp-srcset.liquid src=img width='1080' %}" sizes="(max-width: {{ text_wrapper_bp }}em) calc(100vw - 60px), calc({{ text_wrapper_bp }}em - 60px)">
+
+  </div>
+
 </div>

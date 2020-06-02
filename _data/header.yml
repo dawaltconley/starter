@@ -1,2 +1,4 @@
 - text: Home
   page: index.html
+- text: Posts
+  page: posts.html

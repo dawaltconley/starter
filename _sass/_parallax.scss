@@ -54,3 +54,11 @@ body.parallax-body {
         padding-right: calc(#{$offset}vw - #{$offset}%);
     }
 }
+
+.parallax-bg-deep {
+    @include parallax(-1000px);
+}
+
+.parallax-bg-shallow {
+    @include parallax(-500px);
+}

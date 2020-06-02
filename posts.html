@@ -1,0 +1,18 @@
+---
+layout: default
+title: Site Posts
+---
+
+<div class="text-wrapper wrapper-padding margin-auto padding-l-v">
+  <h1>{{ page.title }}</h1>
+  {% include search.html data='/posts.json' %}
+  <p class="margin-s-t" data-search-info>
+    <noscript>Please enable Javascript to use the search.</noscript>
+  </p>
+  <hr>
+  <section class="v-rhythm" data-search-items>
+    {% for post in site.posts %}
+      {% include post-preview.html post=post heading=2 %}
+    {% endfor %}
+  </section>
+</div>

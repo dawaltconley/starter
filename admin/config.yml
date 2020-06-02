@@ -8,7 +8,7 @@
 
 backend:
   name: git-gateway
-  branch: master
+  branch: sample
 media_folder: "assets/uploads"
 site_url: {{ site.url | prepend: site.baseurl }}
 {% if site.logo %}
