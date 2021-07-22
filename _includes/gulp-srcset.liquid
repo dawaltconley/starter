@@ -55,7 +55,7 @@
             {% if width == nil or bp < width and width %}
                 {% unless bp_diff < 100 %}
                     {% capture suffix %}-{{ bp }}w{% endcapture %}
-                    {% capture new_src %}{% include file-suffix.liquid file_name=src suffix=suffix %} {{ bp }}w{% endcapture %}
+                    {% capture new_src %}{{ src | fileSuffix(suffix) }} {{ bp }}w{% endcapture %}
                     {% unless srcset == '' %}
                         {% assign new_src = new_src | prepend: ', ' %}
                     {% endunless %}

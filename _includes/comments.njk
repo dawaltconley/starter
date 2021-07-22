@@ -1,0 +1,77 @@
+{% macro commentForm(id, re, type='comment', maxlength) %}
+
+  <form {% if id %} id="{{ id }}" {% endif %} class="margin-m-b v-rhythm-s" action="{{ site.jekyll_comments.api }}" method="post" data-content-type="application/json" data-comment-form>
+    {% if re -%}
+      <input type="hidden" name="replyTo" value="{{ re }}">
+    {%- endif %}
+    <textarea class="block full-width" name="comment" placeholder="Leave a {{ type }}..." required {% if maxlength %} maxlength="{{ maxlength }}" {% endif %}></textarea>
+    <div class="flex-row-gt-mobile flex-align-center h-rhythm-s v-rhythm-s h-rhythm-0-lt-mobile v-rhythm-0-gt-mobile">
+      <input type="text" class="full-width" name="name" placeholder="Name" required>
+      <input type="text" class="full-width" name="email" placeholder="Email" required>
+      <button type="submit" class="button cursor-pointer float-right">Submit</button>
+    </div>
+    <label class="flex-row flex-align-center inline-flex-lt-mobile text-light fs-smaller">
+      <input type="checkbox" data-save="name email">
+      <span>Remember me</span>
+    </label>
+  </form>
+
+{% endmacro %}
+
+{% macro addComments(re, placeholder, max, gravatar=true, replies=true) %}
+
+  {% set comments = site.jekyll_comments.collection %}
+  {% set sorted_comments = collection[comments] | selectattr('replyTo', re) | sort(true, false, 'date') %}
+  {% set id = comment.outputPath %}
+
+  {% if length(sorted_comments) > 0 %}
+    <ul class="unlist v-rhythm border-around">
+      {% for comment in sorted_comments.slice(0, max) %}
+        <li id="{{ id }}" class="flex-row-gt-mobile margin-0-v padding-m-v border-basic border-light clearfix">
+          {% if gravatar %}
+            <div class="float-left margin-s-r">
+              <a class="gravatar-size ellipse inline-block overflow-h" href="https://www.gravatar.com/{{ comment.email | lower | md5 }}" target="_blank">
+                <img src="https://www.gravatar.com/avatar/{{ comment.email | lower | md5 }}?d=identicon" alt="{{ comment.name }}'s Gravatar">
+              </a>
+            </div>
+          {% endif %}
+
+          <div class="full-width v-rhythm-xs">
+            <div class="line-height-s {% if gravatar %} flex-col flex-justify-center gravatar-height-min auto-height-gt-mobile {% endif %}">
+              <div class="ff-heading">{{ comment.name }}</div>
+              <time class="fs-smaller text-light" datetime="{{ comment.date | date }}">
+                <span class="avoid-wrap">on {{ comment.date | date('M/D/YY') }},</span>
+                <span class="avoid-wrap">{{ comment.date | date('h:mm a') }}</span>
+              </time>
+            </div>
+
+            <div class="v-rhythm-s">
+              {# {% set content = comment.content | markdownify %} #}
+              {{ comment.content }}
+            </div>
+
+            {% if replies %}
+              <details>
+                {% set summary = 'Reply' %}
+                {% set replies = site[comments] | selectattr('replyTo', id) | length %}
+                {% if replies == 1 %}
+                  {% set summary = '1 reply' %}
+                {% elsif replies > 1 %}
+                  {% set summary = replies | append: ' replies' %}
+                {% endif %}
+                <summary class="text-light fs-smaller">{{ summary }}</summary>
+                <div class="indented-comment margin-s-t {% if gravatar %} margin-0-l-gt-mobile {% endif %}">
+                  {{ commentForm(re=id type='reply') }}
+                  {{ addComments(re=id, gravatar=gravatar, replies=replies, max=max) }}
+                </div>
+              </details>
+            {% endif %}
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    {{ placeholder }}
+  {% endif  %}
+
+{% endmacro %}

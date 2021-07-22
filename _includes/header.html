@@ -22,7 +22,7 @@
       {% for link in site.data.header %}
         {% for doc in site.pages %}
           {% assign match = nil %}
-          {% if link.page == doc.path %}
+          {% if link.page == doc.inputPath %}
             {% assign match = doc %}
             {% break %}
           {% endif %}
@@ -41,7 +41,7 @@
               {% for sub_link in link.dropdown %}
                 {% for doc in site.pages %}
                   {% assign match = nil %}
-                  {% if sub_link.page == doc.path %}
+                  {% if sub_link.page == doc.inputPath %}
                     {% assign match = doc %}
                     {% break %}
                   {% endif %}

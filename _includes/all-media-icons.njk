@@ -1,0 +1,7 @@
+{% macro icons(icon_set, style, list, microdata, analytics) -%}
+    {%- for contact in icon_set -%}
+        {% assign icon_type = contact.type if contact.type else contact[0] %}
+        {% assign icon_link = contact.link if contact.link else contact[0] %}
+        {% assign  %}
+    {%- endfor -%}
+{%- endmacro %}

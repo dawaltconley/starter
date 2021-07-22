@@ -23,9 +23,9 @@
   {% assign sizes = "100vw" %}
 {% endif %}
 
-<article id="{{ post.id | slugify }}" class="relative full-width v-rhythm-{{ sp }}">
+<article id="{{ post.outputPath | slugify }}" class="relative full-width v-rhythm-{{ sp }}">
   <header class="v-rhythm-{{ sp }}">
-    <time class="fs-smaller text-light" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %-d, %Y" }}</time>
+    <time class="fs-smaller text-light" datetime="{{ post.date | date }}">{{ post.date | date: "%B %-d, %Y" }}</time>
     <h{{ h }} class="margin-0-b theme-link">
     {{ post.title }}
     </h{{ h }}>

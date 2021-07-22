@@ -47,7 +47,7 @@
     {% else  %}
       {% assign suffix = '-cc' %}
     {% endif %}
-    {% capture file_name %}{% include file-suffix.liquid file_name=file_name suffix=suffix %}{% endcapture %}
+    {% capture file_name %}{% file_name | fileSuffix(suffix) %}{% endcapture %}
     <meta property="og:image" content="{{ site.baseurl }}/assets/og-images/{{ file_name }}">
   {% elsif page.collection.og_image %}
     <meta property="og:image" content="{{ page.collection.og_image | prepend: site_url }}">

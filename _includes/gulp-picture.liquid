@@ -28,7 +28,7 @@
             {% assign y = bp | map: 'y' %}
             {% for d in densities %}
                 {% capture suffix %}-{{ x }}x{{ y }}-{{ d }}x{% endcapture %}
-                <source media="(max-width: {{ x }}px) and (max-height: {{ y }}px) and (-webkit-max-device-pixel-ratio: {{ d }}), (max-width: {{ x }}px) and (max-height: {{ y }}px) and (max-resolution: {{ d | times: 96 }}dpi)" srcset="{% include file-suffix.liquid file_name=src suffix=suffix %}">
+                <source media="(max-width: {{ x }}px) and (max-height: {{ y }}px) and (-webkit-max-device-pixel-ratio: {{ d }}), (max-width: {{ x }}px) and (max-height: {{ y }}px) and (max-resolution: {{ d | times: 96 }}dpi)" srcset="{{ src | fileSuffix(suffix) }}">
             {% endfor %}
         {% endfor %}
         <source srcset="{{ src }}">

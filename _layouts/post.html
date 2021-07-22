@@ -7,7 +7,7 @@ layout: default
   <article class="text-wrapper margin-l-r margin-auto-h-lt-large">
 
     <header>
-      <time class="fs-smaller text-light" datetime="{{ page.date | date_to_xmlschema }}" data-preview-field="date" data-preview-date="MMM D, YYYY">{{ page.date | date: "%B %-d, %Y" }}</time>
+      <time class="fs-smaller text-light" datetime="{{ page.date | date }}" data-preview-field="date" data-preview-date="MMM D, YYYY">{{ page.date | date: "%B %-d, %Y" }}</time>
       <h1 class="margin-0-b" data-preview-field="title">{{ page.title | smartify }}</h1>
       {% if page.author %}
         <p data-preview-field="author">by {{ page.author }}</p>

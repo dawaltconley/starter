@@ -7,7 +7,7 @@ const templates = [
     {% for template in site.templates %}
         {
             name: `{{ template.template }}`,
-            path: `{{ template.path }}`,
+            path: `{{ template.inputPath }}`,
             html: `{{ template | strip_newlines | replace: '`', '\\`' }}`
         },
     {% endfor %}

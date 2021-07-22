@@ -1,0 +1,23 @@
+{% macro icon(icon_type, icon_link, style, microdata=false, show_link=false, list=false, show_link=false, link_text=icon_link, analytics_label=`Clicked on ${icon_type} link to {icon_link}`) -%}
+
+  {# {% set iconMatch = icon-types | selectattr(type, icon_type) %} #}
+  {% set iconMatch = icon-types[icon_type] %}
+
+  {% for icon in icon-types %}
+    {% if icon_type === icon.type %}
+      {% if icon.type === 'email' %}
+      {% elif icon.type === 'phone' %}
+      {% elif icon.type === 'twitter' %}
+      {% else %}
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+
+{%- endmacro %}
+
+{% macro icons(icon_set, style, list, microdata, analytics) -%}
+  {% for contact in icon_set %}
+    {% assign icon_type = contact.type if contact.type else contact[0] %}
+    {% assign icon_link = contact.link if contact.link else contact[0] %}
+  {% endfor %}
+{%- endmacro %}
