@@ -35,7 +35,7 @@ module.exports = eleventyConfig => {
 
     eleventyConfig.setFrontMatterParsingOptions({
         excerpt: true,
-        excerpt_separator: /<!--\s*more\s*-->/
+        excerpt_separator: '<!-- more -->'
     })
 
     return {
